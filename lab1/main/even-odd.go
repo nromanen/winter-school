@@ -7,8 +7,8 @@ func main() {
 	fmt.Println("Input number:")
 	fmt.Scan(&x)
 	if x%2 == 0 {
-		fmt.Println("x is even")
+		fmt.Println("The number is even")
 	} else {
-		fmt.Println("x is odd")
+		fmt.Println("The number is odd")
 	}
 }

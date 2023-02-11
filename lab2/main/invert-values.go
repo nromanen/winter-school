@@ -10,12 +10,10 @@ func invertValues(s []int) []int {
 }
 
 func main() {
-	s := [][]int{
-		{1, 2, 3, 4, 5},
-		{1, -2, 3, -4, 5},
-		{},
-	}
-	for _, v := range s {
-		fmt.Println(invertValues(v))
-	}
+	// expected - [-1, -2, -3, -4, -5]
+	fmt.Println(invertValues([]int{1, 2, 3, 4, 5}))
+	// expected - [-1, 2, -3, 4, -5]
+	fmt.Println(invertValues([]int{1, -2, 3, -4, 5}))
+	// expected - []
+	fmt.Println(invertValues([]int{}))
 }

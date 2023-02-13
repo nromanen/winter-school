@@ -15,7 +15,7 @@ func main() {
 	fmt.Scan(&h)
 
 	index := float64(m) / (h * h)
-	fmt.Print("Your BMI category: ")
+	fmt.Print("Your body mass index category: ")
 	switch {
 	case index > 0 && index < 16.0:
 		fmt.Println("Underweight (Severe thinness)")

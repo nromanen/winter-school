@@ -9,8 +9,7 @@ func main() {
 	fmt.Println("Please, enter month:")
 	fmt.Scanf("%d\n", &month)
 
-	// var Type string
-	// if month < 1 || month > 12 {
+
 	for month < 1 || month > 12 {
 		fmt.Println("Please, enter correct number of month:")
 		fmt.Scanf("%d\n", &month)
@@ -25,10 +24,5 @@ func main() {
 	} else {
 		fmt.Println("it's 4")
 	}
-	// } else {
-	// 	fmt.Println("ok")
-	// }
 
-	// fmt.Printf("Hello, %d is ", month)
-	// fmt.Println(Type)
 }

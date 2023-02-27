@@ -4,19 +4,19 @@ import "fmt"
 
 func ComputeDepth(n uint) uint {
 	var digits [10]bool
-	var count uint
+	var t uint
 
 	for {
-		count++
-		for _, digit := range fmt.Sprintf("%d", n*count) {
+		t++
+		for _, digit := range fmt.Sprintf("%d", n*t) {
 			digits[digit-'0'] = true
 		}
-		if allDigitsPresent(digits) {
-			return count
+		if allDigits(digits) {
+			return t
 		}
 	}
 }
-func allDigitsPresent(digits [10]bool) bool {
+func allDigits(digits [10]bool) bool {
 	for _, present := range digits {
 		if !present {
 			return false

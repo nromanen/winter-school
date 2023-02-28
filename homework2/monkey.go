@@ -2,19 +2,16 @@ package main
 
 import "fmt"
 
-func monkey(n int) []int {
-	var array []int
+func countMonkeys(n int) []int {
+	nums := make([]int, n)
 	for i := 1; i <= n; i++ {
-		array = append(array, i)
+		nums[i-1] = i
 	}
-	return array
-
+	return nums
 }
 
 func main() {
-
-	fmt.Println(monkey(10))
-	fmt.Println(monkey(1))
-	fmt.Println(monkey(0))
-
+	fmt.Println(countMonkeys(10)) // [1 2 3 4 5 6 7 8 9 10]
+	fmt.Println(countMonkeys(1))  // [1]
+	fmt.Println(countMonkeys(0))  // []
 }

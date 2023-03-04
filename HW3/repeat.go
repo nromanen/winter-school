@@ -6,6 +6,6 @@ func RepeatStr(repetitions int, value string) string {
 	for i := 0; i < repetitions; i++ {
 		repeat += value
 	}
-
+	//Lo = LoLoLoLo
 	return repeat
 }

@@ -1,15 +1,11 @@
-package main
+package kata
 
 import "fmt"
 
-func EachCons(arr []int, n int) (result [][]int) {
-	for i := 0; i < len(arr)-n+1; i++ {
-		result = append(result, arr[i:n+i])
+func CreatePhoneNumber(numbers [10]uint) (result string) {
+	for _, value := range numbers {
+		result += fmt.Sprintf("%d", value)
 	}
-	return
-}
-func main() {
-
-	fmt.Println("for example, ([1,2,3,4], 2)  -", EachCons([]int{1, 2, 3, 4}, 2))
-
+	// 1,2,3,4,5,6,7,8,9,0}) = (123) 456-7890
+	return fmt.Sprintf("(%s) %s-%s", result[:3], result[3:6], result[6:])
 }

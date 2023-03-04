@@ -1,15 +1,21 @@
-package main
+package kata
 
-import "fmt"
+import (
+	"regexp"
+	"sort"
+	"strings"
+)
 
-func EachCons(arr []int, n int) (result [][]int) {
-	for i := 0; i < len(arr)-n+1; i++ {
-		result = append(result, arr[i:n+i])
+func Order(sentence string) string {
+	if sentence == "" {
+		return ""
 	}
-	return
-}
-func main() {
-
-	fmt.Println("for example, ([1,2,3,4], 2)  -", EachCons([]int{1, 2, 3, 4}, 2))
-
+	w := strings.Split(sentence, " ")
+	re := regexp.MustCompile("[1-9]")
+	sort.Slice(w, func(w1, w2 int) bool {
+		i := re.FindString(w[w1])
+		j := re.FindString(w[w2])
+		return i < j
+	})
+	return strings.Join(w, " ")
 }

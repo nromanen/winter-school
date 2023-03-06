@@ -1,38 +1,53 @@
 package main
 
 import (
-    "encoding/csv"
     "fmt"
-    "os"
-    "strconv"
 )
 
 type Employee struct {
-    FullName  string
-    BirthDate string
-    Salary    float64
+    FullName string
+    Age      int
+    Salary   float64
 }
 
 func main() {
-    file, err := os.Open("employees.csv")
-    if err != nil {
-        fmt.Println("Помилка відкриття файлу:", err)
-        return
-    }
-    defer file.Close()
-
-    reader := csv.NewReader(file)
-
-    records, err := reader.ReadAll()
-    if err != nil {
-        fmt.Println("Помилка зчитування файлу:", err)
-        return
+    employees := []Employee{
+        {"John Doe", 25, 35000.0},
+        {"Jane Doe", 35, 50000.0},
+        {"Bob Smith", 42, 65000.0},
+        {"Mary Johnson", 18, 25000.0},
+        {"Tom Wilson", 28, 40000.0},
+        {"Alice Brown", 23, 32000.0},
     }
 
-    ageGroups := make(map[int][]float64)
+    // встановлюємо розміри вікових груп
+    groupSizes := make(map[int]int)
+    for i := 1; i <= 10; i++ {
+        groupSizes[i] = 0
+    }
 
-    for _, record := range records {
-        salary, _ := strconv.ParseFloat(record[2], 64) // Перетворюємо зарплату у числовий тип
-        birthYear, _ := strconv.Atoi(record[1][:4])    // Отримуємо рік народження працівника
-        ageGroup := (2023 - birthYear) / 10            // Обчислюємо вікову групу працівника
-        ageGroups[ageGroup] = append(ageGroups[ageGroup], salary) // Додаємо
+    // знаходимо зарплати для кожної вікової групи
+    groupSalaries := make(map[int][]float64)
+    for _, employee := range employees {
+        ageGroup := (employee.Age-1)/10 + 1
+        groupSizes[ageGroup]++
+        groupSalaries[ageGroup] = append(groupSalaries[ageGroup], employee.Salary)
+    }
+
+    // виводимо середню зарплату для кожної вікової групи
+    for i := 1; i <= 10; i++ {
+        if groupSizes[i] == 0 {
+            continue
+        }
+        averageSalary := sum(groupSalaries[i]) / float64(groupSizes[i])
+        fmt.Printf("Average salary for group %d: %.2f\n", i, averageSalary)
+    }
+}
+
+func sum(values []float64) float64 {
+    result := 0.0
+    for _, value := range values {
+        result += value
+    }
+    return result
+}
